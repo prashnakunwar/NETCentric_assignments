@@ -1,18 +1,35 @@
 ﻿using System;
-using System.Threading.Tasks;
 
-class AsyncProgram
+delegate int MathOperation(int a, int b);
+
+class DelegateProgram
 {
-    static async Task Main(string[] args)
+    static int Add(int a, int b)
     {
-        Console.WriteLine("Start");
-        await SayHelloAsync();
-        Console.WriteLine("End");
+        return a + b;
     }
 
-    static async Task SayHelloAsync()
+    static int Subtract(int a, int b)
     {
-        await Task.Delay(2000);
-        Console.WriteLine("Hello after 2 seconds!");
+        return a - b;
+    }
+
+    static int Multiply(int a, int b)
+    {
+        return a * b;
+    }
+
+    static void Main(string[] args)
+    {
+        MathOperation op;
+
+        op = Add;
+        Console.WriteLine("Add: " + op(10, 5));
+
+        op = Subtract;
+        Console.WriteLine("Subtract: " + op(10, 5));
+
+        op = Multiply;
+        Console.WriteLine("Multiply: " + op(10, 5));
     }
 }
